@@ -26,6 +26,17 @@ class fungsi extends Config
 
         echo "<script>document.location='/quizPancasila/index.php'</script>";
     }
+
+    public function tampil($query)
+    {
+        $sql = $this->db->query($query);
+        $arr = array();
+        while ($row = $sql->fetch_assoc()) {
+            $arr[] = $row;
+        }
+
+        return $arr;
+    }
 }
 
 $init = new fungsi();
