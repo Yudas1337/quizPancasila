@@ -18,6 +18,12 @@ require_once __DIR__ . "/../templates/navbar.php";
     <link href="<?= $init->base_url('assets/fontawesome/css/brands.css') ?>" rel="stylesheet">
     <link href="<?= $init->base_url('assets/fontawesome/css/solid.css') ?>" rel="stylesheet">
 
+    <!-- Datatables -->
+    <link rel="stylesheet" type="text/css" href="<?= $init->base_url('assets/plugins/datatables2/css/dataTables.bootstrap4.css') ?>"/>
+    <link rel="stylesheet" type="text/css" href="<?= $init->base_url('assets/plugins/fixedheader/css/fixedHeader.bootstrap.min.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?= $init->base_url('assets/plugins/responsive/css/responsive.bootstrap.min.css') ?>">
+    <!-- End Datatables -->
+
     <title>quizPancasila | List Soal</title>
 </head>
 <body>
@@ -32,7 +38,7 @@ require_once __DIR__ . "/../templates/navbar.php";
     </div>
     <div class="row mt-3">
         <div class="col-md-12">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped" id="datatable" style="width:100%">
             <thead class="thead-dark">
                 <tr>
                 <th scope="col">#</th>
@@ -72,6 +78,26 @@ require_once __DIR__ . "/../templates/navbar.php";
         </div>
     </div>
     </div>
+
+    <!-- Bootstrap -->
+    <script src="<?= $init->base_url('assets/js/jquery.min.js') ?>"></script>
+    <script src="<?= $init->base_url('assets/js/bootstrap.min.js') ?>"></script>
+
+    <!-- Data Tables -->
+    <script type="text/javascript" src="<?= $init->base_url('assets/plugins/datatables2/js/jquery.dataTables.min.js') ?>"></script>
+    <script type="text/javascript" src="<?= $init->base_url('assets/plugins/datatables2/js/dataTables.bootstrap4.min.js') ?>"></script>
+    <script src="<?= $init->base_url('assets/plugins/fixedheader/js/dataTables.fixedHeader.min.js') ?>"></script>
+    <script src="<?= $init->base_url('assets/plugins/responsive/js/dataTables.responsive.min.js') ?>"></script>
+    <script src="<?= $init->base_url('assets/plugins/responsive/js/responsive.bootstrap.min.js') ?>"></script>
+
+    <script>
+            // Datatable
+            var table = $('#datatable').DataTable( {
+                responsive: true
+            });
+            new $.fn.dataTable.FixedHeader( table );
+    </script>
+    <!-- End Data Tables -->
     
 </body>
 </html>
