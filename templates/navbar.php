@@ -26,10 +26,7 @@ if (!isset($_SESSION['username'])) {
                 Master
             </a>
             <div class="dropdown-menu">
-                <a href="<?= $init->base_url('dashboard/siswa.php') ?>" class="dropdown-item">Data Soal</a>
-            </div>
-            <div class="dropdown-menu">
-                <a href="<?= $init->base_url('dashboard/siswa.php') ?>" class="dropdown-item">Data Admin</a>
+                <a href="<?= $init->base_url('dashboard/list_soal.php') ?>" class="dropdown-item">Data Soal</a>
             </div>
         </li>
 
