@@ -23,8 +23,11 @@ require_once __DIR__ . "/../templates/navbar.php";
 <body>
     <div class="container mt-4">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <h3>:: List Soal</h3>
+        </div>
+        <div class="col-md-4 text-right">
+            <button class="btn btn-success btn-sm" ><i class="fas fa-plus"></i> Tambah</button>
         </div>
     </div>
     <div class="row mt-3">
