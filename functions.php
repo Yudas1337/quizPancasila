@@ -85,8 +85,7 @@ class fungsi extends Config
                 move_uploaded_file($path_foto, "../assets/img/soal/" . $fotoSoal);
                 $this->db->query("INSERT INTO qz_soal VALUES(NULL,'$isiSoal','$kunci_jwb','$fotoSoal','$nilaiSoal','$status','$waktu') ");
             } else {
-                echo "<script>
-                swal('Whoopz!','Ekstensi Gambar Tidak Valid','error')</script>";
+                echo "<script>('Ekstensi Gambar Tidak Valid')</script>";
             }
         } else {
             $this->db->query("INSERT INTO qz_soal VALUES(NULL,'$isiSoal','$kunci_jwb',NULL,'$nilaiSoal','$status','$waktu') ");
@@ -97,6 +96,10 @@ class fungsi extends Config
         }
 
         return true;
+    }
+
+    public function editSoal()
+    {
     }
 }
 
