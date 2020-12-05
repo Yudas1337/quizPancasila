@@ -154,10 +154,26 @@ require_once __DIR__ . "/../templates/navbar.php";
                                         echo '<span class="badge badge-danger">Non-aktif</span>';
                                     } ?>
                                 </td>
-                                <td><img src="<?= $init->base_url('assets/img/soal/' . $so['fotoSoal']) ?>" alt=""></td>
                                 <td>
-                                    <button class="btn btn-warning btn-sm text-white"><i class="fas fa-edit"></i></button> |
-                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    <?php
+                                    if (!$so['fotoSoal']) {
+                                    ?>
+                                        <img width="200" height="200" src="<?= $init->base_url('assets/img/noimage.jpg') ?>" alt="">
+                                    <?php
+                                    } else {
+                                    ?><img width="200" height="200" src="<?= $init->base_url('assets/img/soal/' . $so['fotoSoal']) ?>" alt="">
+                                    <?php
+                                    }
+                                    ?> </td>
+                                <td>
+                                    <a href="<?= $init->base_url('dashboard/edit_soal.php?idSoal=' . $so['idSoal']) ?>" class="btn btn-warning btn-sm text-white"><i class="fas fa-edit"></i></a>
+                                    <?php if ($so['status'] == 1) : ?>
+                                        <a href="<?= $init->base_url('dashboard/hapus_soal.php?idSoal=' . $so['idSoal']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin akan menonaktifkan soal?')"><i class="fas fa-eye-slash"></i></a>
+                                    <?php endif; ?>
+                                    <?php if ($so['status'] == 0) : ?>
+                                        <a href="<?= $init->base_url('dashboard/hapus_soal.php?idSoal=' . $so['idSoal']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin akan mengaktifkan soal?')"><i class="fas fa-eye"></i></a>
+                                    <?php endif; ?>
+
                                 </td>
                             </tr>
                         <?php $no++;
