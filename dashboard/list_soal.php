@@ -3,6 +3,10 @@ require_once __DIR__ . "/../templates/navbar.php";
 
     $querySoal = "select * from qz_soal";
     $soal = $init->tampil($querySoal);
+
+    if (isset($_POST['submit'])) {
+        echo $data = ($init->statusSoal($_POST) > 0) ? '' : '';
+    }
 ?>
 
 <!DOCTYPE html>
@@ -69,9 +73,50 @@ require_once __DIR__ . "/../templates/navbar.php";
                     <td><img src="<?= $init->base_url('assets/img/soal/'.$so['fotoSoal']) ?>" alt=""></td>
                     <td>
                         <button class="btn btn-warning btn-sm text-white"><i class="fas fa-edit"></i></button> |
-                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                        <?php
+                        if($so['status'] == 1){
+                            echo '<button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#modalStatus"><i class="fas fa-eye-slash"></i></button>';
+                        }else{
+                            echo '<button class="btn btn-info btn-sm" type="button" data-toggle="modal" data-target="#modalStatus"><i class="fas fa-eye"></i></button>';
+                        }
+                        ?>
                     </td>
                 </tr>
+
+                <!-- Modal -->
+                    <div class="modal fade" id="modalStatus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <form method="POST" action="">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Soal</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            
+                            <div class="modal-body">
+                                <input type="hidden" name="idSoal" value="<?= $so['idSoal']?>">
+                                <input type="hidden" name="status" value="<?= $so['status']?>">
+                                <?php
+                                if($so['status'] == 1){
+                                    echo 'Apakah anda ingin menyembunyikan soal ini ?';
+                                }else{
+                                    echo 'Apakah anda ingin menampilkan soal ini ?';
+                                }
+                                ?>
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                                <button type="submit" name="submit" class="btn btn-primary">Ya</button>
+                            </div>
+                            
+                        </div>
+                        </form>
+                    </div>
+                    </div>
+                <!-- End Modal -->
                 <?php $no++;endforeach ?>
             </tbody>
             </table>
@@ -96,6 +141,11 @@ require_once __DIR__ . "/../templates/navbar.php";
                 responsive: true
             });
             new $.fn.dataTable.FixedHeader( table );
+
+            // Modal
+            $('#myModal').on('shown.bs.modal', function () {
+                $('#myInput').trigger('focus')
+            })
     </script>
     <!-- End Data Tables -->
     

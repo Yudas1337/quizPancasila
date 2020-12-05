@@ -39,6 +39,19 @@ class fungsi extends Config
 
         return $arr;
     }
+
+    public function statusSoal()
+    {
+        $idSoal = $_POST['idSoal'];
+        $status = $_POST['status'];
+
+        ($status == 1) ? $statusBaru = 0 : $statusBaru = 1;
+
+        $sql = "update qz_soal set status='{$statusBaru}' where idSoal='{$idSoal}'";
+        $this->db->query($sql);
+
+        header('location: '.$this->base_url('dashboard/list_soal.php'));
+    }
 }
 
 $init = new fungsi();
