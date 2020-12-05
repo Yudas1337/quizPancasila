@@ -14,6 +14,12 @@ if (isset($_SESSION['qz_admin'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= $init->base_url('assets/css/bootstrap.min.css') ?>">
+
+    <!-- Font Awesome -->
+    <link href="<?= $init->base_url('assets/fontawesome/css/fontawesome.css') ?>" rel="stylesheet">
+    <link href="<?= $init->base_url('assets/fontawesome/css/brands.css') ?>" rel="stylesheet">
+    <link href="<?= $init->base_url('assets/fontawesome/css/solid.css') ?>" rel="stylesheet">
+
     <title>Login</title>
 </head>
 
@@ -56,6 +62,7 @@ if (isset($_SESSION['qz_admin'])) {
     <script src="<?= $init->base_url('assets/js/jquery.min.js') ?>"></script>
     <script src="<?= $init->base_url('assets/js/popper.min.js') ?>"></script>
     <script src="<?= $init->base_url('assets/js/bootstrap.min.js') ?>"></script>
+    
 </body>
 
 </html>

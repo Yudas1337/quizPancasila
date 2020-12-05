@@ -6,6 +6,14 @@ require_once __DIR__ . "/../templates/navbar.php" ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="<?= $init->base_url('assets/css/bootstrap.min.css') ?>">
+
+    <!-- Font Awesome -->
+    <link href="<?= $init->base_url('assets/fontawesome/css/fontawesome.css') ?>" rel="stylesheet">
+    <link href="<?= $init->base_url('assets/fontawesome/css/brands.css') ?>" rel="stylesheet">
+    <link href="<?= $init->base_url('assets/fontawesome/css/solid.css') ?>" rel="stylesheet">
+    
     <title>quizPancasila | List Soal</title>
 </head>
 <body>
@@ -33,7 +41,9 @@ require_once __DIR__ . "/../templates/navbar.php" ?>
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>@mdo</td>
-                    <td>ssd</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button>
+                    </td>
                 </tr>
                 <tr>
                 <th scope="row">2</th>
