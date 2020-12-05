@@ -156,8 +156,8 @@ if (isset($_GET['idSoal'])) {
 require_once __DIR__ . "/../templates/footer.php";
 
 if (isset($_POST['submit'])) {
-    if ($init->tambahSoal($_POST) > 0) {
-        echo "<script>alert('berhasil tambah Soal')</script>";
+    if ($init->editSoal($_POST) > 0) {
+        echo "<script>alert('berhasil Edit Soal')</script>";
         echo "<script>document.location='list_soal.php'</script>";
     }
 }
