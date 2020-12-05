@@ -1,12 +1,12 @@
 <?php
 require_once __DIR__ . "/../templates/navbar.php";
 
-    $querySoal = "select * from qz_soal";
-    $soal = $init->tampil($querySoal);
+$querySoal = "select * from qz_soal";
+$soal = $init->tampil($querySoal);
 
-    if (isset($_POST['submit'])) {
-        echo $data = ($init->statusSoal($_POST) > 0) ? '' : '';
-    }
+if (isset($_POST['submit'])) {
+    echo $data = ($init->statusSoal($_POST) > 0) ? '' : '';
+}
 ?>
 
 <!DOCTYPE html>
@@ -45,88 +45,65 @@ require_once __DIR__ . "/../templates/navbar.php";
         <div class="row mt-3">
             <div class="col-md-12">
                 <table class="table table-bordered table-striped" id="datatable" style="width:100%">
-                <thead class="thead-dark">
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Soal</th>   
-                    <th scope="col">Kunci</th>
-                    <th scope="col">Nilai</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Gambar</th>
-                    <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                    $no = 1;
-                    foreach($soal as $so): ?>
-                    <tr>
-                    <th scope="row"><?= $no ?></th>
-                        <td><?= $so['isiSoal'] ?></td>
-                        <td><?= $so['kunci_jwb'] ?></td>
-                        <td><?= $so['nilaiSoal'] ?></td>
-                        <td>
-                            <?php if($so['status'] == 1){
-                                echo '<span class="badge badge-success">Aktif</span>';
-                            }else{
-                                echo '<span class="badge badge-danger">Non-aktif</span>';
-                            } ?>
-                        </td>
-                        <td><img src="<?= $init->base_url('assets/img/soal/'.$so['fotoSoal']) ?>" alt=""></td>
-                        <td>
-                            <button class="btn btn-warning btn-sm text-white"><i class="fas fa-edit"></i></button> |
-                            <?php
-                            if($so['status'] == 1){
-                                echo '<button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#modalStatus-'.$so['idSoal'].'"><i class="fas fa-eye-slash"></i></button>';
-                            }else{
-                                echo '<button class="btn btn-info btn-sm" type="button" data-toggle="modal" data-target="#modalStatus-'.$so['idSoal'].'"><i class="fas fa-eye"></i></button>';
-                            }
-                            ?>
-                        </td>
-                    </tr>
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Soal</th>
+                            <th scope="col">Kunci</th>
+                            <th scope="col">Nilai</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Gambar</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $no = 1;
+                        foreach ($soal as $so) : ?>
+                            <tr>
+                                <th scope="row"><?= $no ?></th>
+                                <td><?= $so['isiSoal'] ?></td>
+                                <td><?= $so['kunci_jwb'] ?></td>
+                                <td><?= $so['nilaiSoal'] ?></td>
+                                <td>
+                                    <?php if ($so['status'] == 1) {
+                                        echo '<span class="badge badge-success">Aktif</span>';
+                                    } else {
+                                        echo '<span class="badge badge-danger">Non-aktif</span>';
+                                    } ?>
+                                </td>
+                                <td>
+                                    <?php if (!$so['fotoSoal']) : ?>
+                                        <img src="<?= $init->base_url('assets/img/noimage.jpg') ?>" width="200" height="200"></td>
+                            <?php endif; ?>
+                            <?php if ($so['fotoSoal']) : ?>
+                                <img src="<?= $init->base_url('assets/img/soal/' . $so['fotoSoal']) ?>" width="200" height="200"></td>
+                            <?php endif; ?>
 
-                    <!-- Modal -->
-                        <div class="modal fade" id="modalStatus-<?= $so['idSoal'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                        <form method="POST" action="">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Soal</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                
-                                <div class="modal-body">
-                                    <input type="hidden" name="idSoal" value="<?= $so['idSoal']?>">
-                                    <input type="hidden" name="status" value="<?= $so['status']?>">
-                                    <?php
-                                    if($so['status'] == 1){
-                                        echo 'Apakah anda ingin menyembunyikan soal ini ?';
-                                    }else{
-                                        echo 'Apakah anda ingin menampilkan soal ini ?';
-                                    }
-                                    ?>
-                                    
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                                    <button type="submit" name="submit" class="btn btn-primary">Ya</button>
-                                </div>
-                                
-                            </div>
-                            </form>
-                        </div>
-                        </div>
-                    <!-- End Modal -->
-                    <?php $no++;endforeach ?>
-                </tbody>
-                
-                </div>
+                            <td>
+                                <a href="<?= $init->base_url('dashboard/edit_soal.php?idSoal=' . $so['idSoal']); ?>" class="btn btn-warning btn-sm text-white"><i class="fas fa-edit"></i></a>|
+                                <?php
+                                if ($so['status'] == 1) {
+                                ?><a href="<?= $init->base_url('dashboard/hapus_soal.php?idSoal=' . $so['idSoal']); ?>" class="btn btn-danger btn-sm"><i class="fas fa-eye-slash"></i></a>
+                                <?php
+                                } else { ?>
+                                    <a href="<?= $init->base_url('dashboard/hapus_soal.php?idSoal=' . $so['idSoal']); ?>" class="btn btn-danger btn-sm"><i class="fas fa-eye"></i></a>
+                                <?php
+                                }
+                                ?>
+                            </td>
+                            </tr>
+
+
+                        <?php $no++;
+                        endforeach ?>
+                    </tbody>
+
             </div>
         </div>
     </div>
-    
+    </div>
+
 
     <!-- Bootstrap -->
     <script src="<?= $init->base_url('assets/js/jquery.min.js') ?>"></script>
@@ -140,16 +117,16 @@ require_once __DIR__ . "/../templates/navbar.php";
     <script src="<?= $init->base_url('assets/plugins/responsive/js/responsive.bootstrap.min.js') ?>"></script>
 
     <script>
-            // Datatable
-            var table = $('#datatable').DataTable( {
-                responsive: true
-            });
-            new $.fn.dataTable.FixedHeader( table );
+        // Datatable
+        var table = $('#datatable').DataTable({
+            responsive: true
+        });
+        new $.fn.dataTable.FixedHeader(table);
 
-            // Modal
-            $('#myModal').on('shown.bs.modal', function () {
-                $('#myInput').trigger('focus')
-            })
+        // Modal
+        $('#myModal').on('shown.bs.modal', function() {
+            $('#myInput').trigger('focus')
+        })
     </script>
     <!-- End Data Tables -->
 
