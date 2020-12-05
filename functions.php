@@ -24,6 +24,8 @@ class fungsi extends Config
         unset($_SESSION['username']);
         unset($_SESSION['fotoAdmin']);
 
+        session_destroy();
+
         echo "<script>document.location='/quizPancasila/index.php'</script>";
     }
 }
