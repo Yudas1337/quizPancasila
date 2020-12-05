@@ -50,7 +50,7 @@ require_once __DIR__ . "/../templates/navbar.php";
                 <th scope="row"><?= $no ?></th>
                     <td><?= $so['isiSoal'] ?></td>
                     <td><?= $so['kunci_jwb'] ?></td>
-                    <td><?= $so['fotoSoal'] ?></td>
+                    <td><img src="<?= $init->base_url('assets/img/soal/'.$so['fotoSoal']) ?>" alt=""></td>
                     <td>
                         <button class="btn btn-warning btn-sm text-white"><i class="fas fa-edit"></i></button> |
                         <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
