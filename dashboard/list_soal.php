@@ -42,9 +42,7 @@ require_once __DIR__ . "/../templates/navbar.php";
                 <a class="btn btn-success btn-sm" href="<?= $init->base_url('dashboard/tambah_soal.php') ?>"><i class="fas fa-plus"></i> Tambah</a>
             </div>
         </div>
-        
-    </div>
- s   <div class="row mt-3">
+        <div class="row mt-3">
         <div class="col-md-12">
             <table class="table table-bordered table-striped" id="datatable" style="width:100%">
             <thead class="thead-dark">
@@ -123,66 +121,12 @@ require_once __DIR__ . "/../templates/navbar.php";
                 <!-- End Modal -->
                 <?php $no++;endforeach ?>
             </tbody>
-            </table>
-        <div class="row mt-3">
-            <div class="col-md-12">
-                <table class="table table-bordered table-striped" id="datatable" style="width:100%">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Soal</th>
-                            <th scope="col">Kunci</th>
-                            <th scope="col">Nilai</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Gambar</th>
-                            <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $no = 1;
-                        foreach ($soal as $so) : ?>
-                            <tr>
-                                <th scope="row"><?= $no ?></th>
-                                <td><?= $so['isiSoal'] ?></td>
-                                <td><?= $so['kunci_jwb'] ?></td>
-                                <td><?= $so['nilaiSoal'] ?></td>
-                                <td>
-                                    <?php if ($so['status'] == 1) {
-                                        echo '<span class="badge badge-success">Aktif</span>';
-                                    } else {
-                                        echo '<span class="badge badge-danger">Non-aktif</span>';
-                                    } ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if (!$so['fotoSoal']) {
-                                    ?>
-                                        <img width="200" height="200" src="<?= $init->base_url('assets/img/noimage.jpg') ?>" alt="">
-                                    <?php
-                                    } else {
-                                    ?><img width="200" height="200" src="<?= $init->base_url('assets/img/soal/' . $so['fotoSoal']) ?>" alt="">
-                                    <?php
-                                    }
-                                    ?> </td>
-                                <td>
-                                    <a href="<?= $init->base_url('dashboard/edit_soal.php?idSoal=' . $so['idSoal']) ?>" class="btn btn-warning btn-sm text-white"><i class="fas fa-edit"></i></a>
-                                    <?php if ($so['status'] == 1) : ?>
-                                        <a href="<?= $init->base_url('dashboard/hapus_soal.php?idSoal=' . $so['idSoal']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin akan menonaktifkan soal?')"><i class="fas fa-eye-slash"></i></a>
-                                    <?php endif; ?>
-                                    <?php if ($so['status'] == 0) : ?>
-                                        <a href="<?= $init->base_url('dashboard/hapus_soal.php?idSoal=' . $so['idSoal']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin akan mengaktifkan soal?')"><i class="fas fa-eye"></i></a>
-                                    <?php endif; ?>
-
-                                </td>
-                            </tr>
-                        <?php $no++;
-                        endforeach ?>
-                    </tbody>
-                </table>
+            
             </div>
         </div>
     </div>
+    </div>
+    
 
     <!-- Bootstrap -->
     <script src="<?= $init->base_url('assets/js/jquery.min.js') ?>"></script>
