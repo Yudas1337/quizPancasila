@@ -77,16 +77,16 @@ require_once __DIR__ . "/../templates/navbar.php";
                             <button class="btn btn-warning btn-sm text-white"><i class="fas fa-edit"></i></button> |
                             <?php
                             if($so['status'] == 1){
-                                echo '<button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#modalStatus"><i class="fas fa-eye-slash"></i></button>';
+                                echo '<button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#modalStatus-'.$so['idSoal'].'"><i class="fas fa-eye-slash"></i></button>';
                             }else{
-                                echo '<button class="btn btn-info btn-sm" type="button" data-toggle="modal" data-target="#modalStatus"><i class="fas fa-eye"></i></button>';
+                                echo '<button class="btn btn-info btn-sm" type="button" data-toggle="modal" data-target="#modalStatus-'.$so['idSoal'].'"><i class="fas fa-eye"></i></button>';
                             }
                             ?>
                         </td>
                     </tr>
 
                     <!-- Modal -->
-                        <div class="modal fade" id="modalStatus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="modalStatus-<?= $so['idSoal'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                         <form method="POST" action="">
                             <div class="modal-content">
