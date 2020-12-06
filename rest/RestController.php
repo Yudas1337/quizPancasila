@@ -10,7 +10,7 @@ class RestController extends Config
 
     public function restSoal()
     {
-        $sql = $this->db->query("SELECT * FROM qz_soal JOIN qz_jawaban ON qz_soal.idSoal = qz_jawaban.idSoal");
+        $sql = $this->db->query("SELECT * FROM qz_soal JOIN qz_jawaban ON qz_soal.idSoal = qz_jawaban.idSoal WHERE qz_soal.statusSoal = 1");
         $arr = array();
 
         while ($data = $sql->fetch_object()) {
