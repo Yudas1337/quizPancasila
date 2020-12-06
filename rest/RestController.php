@@ -42,6 +42,51 @@ class RestController extends Config
 
         $this->db->close();
     }
+
+    public function restDaftar()
+    {
+        $waktu = date("Y-m-d H:i:s");
+        $response = array("isError" => FALSE);
+        $avatar = array('avatar1.png', 'avatar2.png', 'avatar3.png', 'avatar4.png', 'avatar5.png', 'avatar6.png', 'avatar7.png', 'avatar8.png');
+
+        $namaUser       = trim(htmlspecialchars($_POST['namaUser']));
+        $emailUser      = trim(htmlspecialchars($_POST['emailUser']));
+        $hpUser         = trim(htmlspecialchars($_POST['hpUser']));
+        $passUser       = trim(htmlspecialchars($_POST['passUser']));
+
+        $hitungpass = strlen($passUser);
+        $rand_avatar = array_rand($avatar);
+
+        if ($hitungpass < 6) {
+            $response["isError"]   = TRUE;
+            $response["message"]   = "Password Minimal 6 Karakter";
+            echo json_encode($response);
+        } else {
+            $encrypt_password = password_hash($passUser, PASSWORD_DEFAULT);
+
+            $sql    = $this->db->query("SELECT emailUser from qz_user WHERE emailUser = '$emailUser'")->num_rows;
+
+            if ($sql > 0) {
+                $response["isError"]   = TRUE;
+                $response["message"]   = "Akun Telah Terdaftar";
+
+                echo json_encode($response);
+            } else {
+
+                $this->db->query("INSERT INTO qz_user VALUES (NULL,'$namaUser','$hpUser','$emailUser','$encrypt_password','$avatar[$rand_avatar]','$waktu','$waktu',NULL,'1')");
+
+                $response["value"]   = 1;
+                $response["isError"] = FALSE;
+                $response["message"] = "Berhasil Daftar Akun!";
+
+                echo json_encode($response);
+            }
+        }
+
+
+
+        $this->db->close();
+    }
 }
 
 $rest = new RestController;
