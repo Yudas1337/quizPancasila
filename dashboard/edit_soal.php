@@ -92,10 +92,10 @@ if (isset($_GET['idSoal'])) {
                                 <div class="form-group">
                                     <select name="kunci_jwb" class="form-control">
                                         <?php $kunci = $cek['kunci_jwb']; ?>
-                                        <option value="A" <?= $data = ($cek == "A") ? 'selected' : '' ?>>A</option>
-                                        <option value="B" <?= $data = ($cek == "B") ? 'selected' : '' ?>>B</option>
-                                        <option value="C" <?= $data = ($cek == "C") ? 'selected' : '' ?>>C</option>
-                                        <option value="D" <?= $data = ($cek == "D") ? 'selected' : '' ?>>D</option>
+                                        <option value="A" <?= $data = ($kunci == "A") ? 'selected' : '' ?>>A</option>
+                                        <option value="B" <?= $data = ($kunci == "B") ? 'selected' : '' ?>>B</option>
+                                        <option value="C" <?= $data = ($kunci == "C") ? 'selected' : '' ?>>C</option>
+                                        <option value="D" <?= $data = ($kunci == "D") ? 'selected' : '' ?>>D</option>
                                     </select>
                                 </div>
                             </td>
@@ -127,9 +127,9 @@ if (isset($_GET['idSoal'])) {
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <input type="radio" id="radio1" name="status" value="1" <?= $data = ($cek['status'] === "1") ? 'checked' : '' ?>>
+                                    <input type="radio" id="radio1" name="status" value="1" <?= $data = ($cek['statusSoal'] === "1") ? 'checked' : '' ?>>
                                     <label for="radio1">Aktif</label>
-                                    <input type="radio" id="radio2" name="status" value="0" <?= $data = ($cek['status'] === "0") ? 'checked' : '' ?>>
+                                    <input type="radio" id="radio2" name="status" value="0" <?= $data = ($cek['statusSoal'] === "0") ? 'checked' : '' ?>>
                                     <label for="radio1">Tidak Aktif</label>
 
                                 </div>
@@ -156,7 +156,7 @@ if (isset($_GET['idSoal'])) {
 require_once __DIR__ . "/../templates/footer.php";
 
 if (isset($_POST['submit'])) {
-    if ($init->editSoal($_POST) > 0) {
+    if ($init->editSoal($idSoal)) {
         echo "<script>alert('berhasil Edit Soal')</script>";
         echo "<script>document.location='list_soal.php'</script>";
     }

@@ -3,10 +3,6 @@ require_once __DIR__ . "/../templates/navbar.php";
 
 $querySoal = "select * from qz_soal";
 $soal = $init->tampil($querySoal);
-
-if (isset($_POST['submit'])) {
-    echo $data = ($init->statusSoal($_POST) > 0) ? '' : '';
-}
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +62,7 @@ if (isset($_POST['submit'])) {
                                 <td><?= $so['kunci_jwb'] ?></td>
                                 <td><?= $so['nilaiSoal'] ?></td>
                                 <td>
-                                    <?php if ($so['status'] == 1) {
+                                    <?php if ($so['statusSoal'] == 1) {
                                         echo '<span class="badge badge-success">Aktif</span>';
                                     } else {
                                         echo '<span class="badge badge-danger">Non-aktif</span>';
@@ -83,11 +79,11 @@ if (isset($_POST['submit'])) {
                             <td>
                                 <a href="<?= $init->base_url('dashboard/edit_soal.php?idSoal=' . $so['idSoal']); ?>" class="btn btn-warning btn-sm text-white"><i class="fas fa-edit"></i></a>|
                                 <?php
-                                if ($so['status'] == 1) {
-                                ?><a href="<?= $init->base_url('dashboard/hapus_soal.php?idSoal=' . $so['idSoal']); ?>" class="btn btn-danger btn-sm"><i class="fas fa-eye-slash"></i></a>
+                                if ($so['statusSoal'] == 1) {
+                                ?><a onclick="return confirm('Yakin ingin menonaktifkan soal?')" href="<?= $init->base_url('dashboard/hapus_soal.php?idSoal=' . $so['idSoal']); ?>" class="btn btn-danger btn-sm"><i class="fas fa-eye-slash"></i></a>
                                 <?php
                                 } else { ?>
-                                    <a href="<?= $init->base_url('dashboard/hapus_soal.php?idSoal=' . $so['idSoal']); ?>" class="btn btn-danger btn-sm"><i class="fas fa-eye"></i></a>
+                                    <a onclick="return confirm('Yakin ingin mengaktifkan soal?')" href="<?= $init->base_url('dashboard/hapus_soal.php?idSoal=' . $so['idSoal']); ?>" class="btn btn-danger btn-sm"><i class="fas fa-eye"></i></a>
                                 <?php
                                 }
                                 ?>
