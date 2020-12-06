@@ -49,13 +49,13 @@ class fungsi extends Config
     public function statusSoal($id)
     {
         $get = $this->db->query("SELECT * FROM qz_soal WHERE idSoal = '$id'")->fetch_object();
-        $status = $get->status;
+        $status = $get->statusSoal;
 
         ($status == 1) ? $statusBaru = 0 : $statusBaru = 1;
 
         header('location: ' . $this->base_url('dashboard/list_soal.php'));
 
-        return $this->db->query("UPDATE qz_soal SET status = '$statusBaru' WHERE idSoal = '$id'");
+        return $this->db->query("UPDATE qz_soal SET statusSoal = '$statusBaru' WHERE idSoal = '$id'");
     }
     public function tambahSoal()
     {
