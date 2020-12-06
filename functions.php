@@ -75,7 +75,9 @@ class fungsi extends Config
         $uraian4       = trim(htmlspecialchars($_POST['uraian_d']));
         $kunci_jwb      = trim(htmlspecialchars($_POST['kunci_jwb']));
         $nilaiSoal      = trim(htmlspecialchars($_POST['nilaiSoal']));
+
         $status         = trim(htmlspecialchars($_POST['status']));
+        ($status == "nol") ? $status = 0 : $status = 1;
 
         $indexSoal     = trim(htmlspecialchars($_POST['indexSoal']));
         $abjad1       = trim(htmlspecialchars($_POST['abjad_a']));
@@ -130,6 +132,7 @@ class fungsi extends Config
         $kunci_jwb      = trim(htmlspecialchars($_POST['kunci_jwb']));
         $nilaiSoal      = trim(htmlspecialchars($_POST['nilaiSoal']));
         $status         = trim(htmlspecialchars($_POST['status']));
+        ($status == "nol") ? $status = 0 : $status = 1;
         $abjad1       = trim(htmlspecialchars($_POST['abjad_a']));
         $abjad2       = trim(htmlspecialchars($_POST['abjad_b']));
         $abjad3       = trim(htmlspecialchars($_POST['abjad_c']));

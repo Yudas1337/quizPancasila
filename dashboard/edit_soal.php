@@ -129,7 +129,7 @@ if (isset($_GET['idSoal'])) {
                                 <div class="form-group">
                                     <input type="radio" id="radio1" name="status" value="1" <?= $data = ($cek['statusSoal'] === "1") ? 'checked' : '' ?>>
                                     <label for="radio1">Aktif</label>
-                                    <input type="radio" id="radio2" name="status" value="0" <?= $data = ($cek['statusSoal'] === "0") ? 'checked' : '' ?>>
+                                    <input type="radio" id="radio2" name="status" value="nol" <?= $data = ($cek['statusSoal'] === "0") ? 'checked' : '' ?>>
                                     <label for="radio1">Tidak Aktif</label>
 
                                 </div>

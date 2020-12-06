@@ -116,7 +116,7 @@ $index++;
                                 <div class="form-group">
                                     <input type="radio" id="radio1" name="status" value="1" <?= $data = (!empty($_POST['status']) && $_POST['status'] === "1") ? 'checked' : '' ?>>
                                     <label for="radio1">Aktif</label>
-                                    <input type="radio" id="radio2" name="status" value="0" <?= $data = (!empty($_POST['status']) && $_POST['status'] === "0") ? 'checked' : '' ?>>
+                                    <input type="radio" id="radio2" name="status" value="nol" <?= $data = (!empty($_POST['status']) && $_POST['status'] === "nol") ? 'checked' : '' ?>>
                                     <label for="radio1">Tidak Aktif</label>
 
                                 </div>
