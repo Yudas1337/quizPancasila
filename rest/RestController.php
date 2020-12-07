@@ -87,6 +87,41 @@ class RestController extends Config
 
         $this->db->close();
     }
+
+    public function restLogin(){
+        $response = array("isError" => FALSE);
+
+        $emailUser      = trim(htmlspecialchars($_POST['emailUser']));
+        $passUser       = trim(htmlspecialchars($_POST['passUser']));
+
+        $encrypt_password = password_hash($passUser, PASSWORD_DEFAULT);
+        $sql    = $this->db->query("SELECT idUser from qz_user WHERE emailUser = '$emailUser' AND passUser = '$passUser'")->num_rows;
+        
+        // print_r($sql);
+        // echo $encrypt_password;
+        if ($sql > 0) {
+
+            $sql2 = $this->db->query("SELECT * from qz_user WHERE emailUser = '$emailUser' AND passUser = '$passUser'");
+
+            $response["isError"] = FALSE;
+            $response["message"] = "Berhasil Login Akun!";
+            
+            while($data = $sql2->fetch_object()){
+                $idUser = $data->idUser;
+            }
+
+            $response["idUser"] = $idUser;
+
+            echo json_encode($response);
+        } else {
+
+            $response["isError"]   = TRUE;
+            $response["message"]   = "Gagal Login Akun !";
+            
+
+            echo json_encode($response);
+        }
+    }
 }
 
 $rest = new RestController;
