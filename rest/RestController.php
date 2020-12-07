@@ -88,36 +88,44 @@ class RestController extends Config
         $this->db->close();
     }
 
-    public function restLogin(){
+    public function restLogin()
+    {
         $response = array("isError" => FALSE);
 
         $emailUser      = trim(htmlspecialchars($_POST['emailUser']));
         $passUser       = trim(htmlspecialchars($_POST['passUser']));
 
-        $encrypt_password = password_hash($passUser, PASSWORD_DEFAULT);
-        $sql    = $this->db->query("SELECT idUser from qz_user WHERE emailUser = '$emailUser' AND passUser = '$passUser'")->num_rows;
-        
-        // print_r($sql);
-        // echo $encrypt_password;
-        if ($sql > 0) {
+        // sanitize sql injection
+        $emailUser = $this->db->real_escape_string($emailUser);
+        $passUser  = $this->db->real_escape_string($passUser);
 
-            $sql2 = $this->db->query("SELECT * from qz_user WHERE emailUser = '$emailUser' AND passUser = '$passUser'");
+        $sql = $this->db->query("SELECT * FROM qz_user WHERE emailUser = '$emailUser'");
+        $hitung = $sql->num_rows;
+        $fetch = $sql->fetch_object();
 
-            $response["isError"] = FALSE;
-            $response["message"] = "Berhasil Login Akun!";
-            
-            while($data = $sql2->fetch_object()){
-                $idUser = $data->idUser;
+        if ($hitung > 0) {
+
+            if (password_verify($passUser, $fetch->passUser)) {
+
+                $response["isError"] = FALSE;
+                $response["message"] = "Berhasil Login Akun!";
+
+                $response["namaUser"] = $fetch->namaUser;
+                $response["idUser"] = $fetch->idUser;
+
+                echo json_encode($response);
+            } else {
+                $response["isError"]   = TRUE;
+                $response["message"]   = "Email atau Password tidak cocok !";
+
+
+                echo json_encode($response);
             }
-
-            $response["idUser"] = $idUser;
-
-            echo json_encode($response);
         } else {
 
             $response["isError"]   = TRUE;
-            $response["message"]   = "Gagal Login Akun !";
-            
+            $response["message"]   = "Akun tidak Ditemukan !";
+
 
             echo json_encode($response);
         }
