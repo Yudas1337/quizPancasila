@@ -10,7 +10,7 @@ class RestController extends Config
 
     public function restSoal()
     {
-        $sql = $this->db->query("SELECT * FROM qz_soal WHERE statusSoal = 1 ORDER BY rand()");
+        $sql = $this->db->query("SELECT * FROM qz_soal WHERE statusSoal = 1");
         $sql2 = $this->db->query("SELECT * FROM qz_jawaban JOIN qz_soal ON qz_jawaban.idSoal = qz_soal.idSoal WHERE qz_soal.statusSoal = 1");
         $arr_soal = array();
         $arr_jawaban = array();
@@ -18,6 +18,10 @@ class RestController extends Config
             array_push($arr_soal, array(
                 'idSoal' => $data->idSoal,
                 'isiSoal' => $data->isiSoal,
+                'opsi_a'   => $data->opsi_a,
+                'opsi_b'   => $data->opsi_b,
+                'opsi_c'   => $data->opsi_c,
+                'opsi_d'   => $data->opsi_d,
                 'kunci_jwb' => $data->kunci_jwb,
                 'fotoSoal' => (!$data->fotoSoal) ? '' : $data->fotoSoal,
                 'nilaiSoal' => $data->nilaiSoal,
