@@ -16,7 +16,7 @@
 <li>Database : Mysql</li>
 </ul>
 
-# Coded By Yudas & Wira :
+# Creditz Belongs to Ownerz :
 Facebook : [https://www.facebook.com/yudas1337](https://www.facebook.com/yudas1337)
 
 Gmail    : yudasmalabi@gmail.com
