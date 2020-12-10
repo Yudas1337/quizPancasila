@@ -79,15 +79,6 @@ class fungsi extends Config
         $status         = trim(htmlspecialchars($_POST['status']));
         ($status == "nol") ? $status = 0 : $status = 1;
 
-        $indexSoal     = trim(htmlspecialchars($_POST['indexSoal']));
-        $abjad1       = trim(htmlspecialchars($_POST['abjad_a']));
-        $abjad2       = trim(htmlspecialchars($_POST['abjad_b']));
-        $abjad3       = trim(htmlspecialchars($_POST['abjad_c']));
-        $abjad4       = trim(htmlspecialchars($_POST['abjad_d']));
-
-        $jawaban = array($abjad1 => $uraian1, $abjad2 => $uraian2, $abjad3 => $uraian3, $abjad4 => $uraian4);
-
-
         if (!empty($_FILES['fotoSoal']['name'])) {
             $fotoSoal = time() . $_FILES['fotoSoal']['name'];
             $path_foto = $_FILES['fotoSoal']['tmp_name'];
@@ -96,16 +87,12 @@ class fungsi extends Config
 
             if (in_array($end, $this->ekstensi)) {
                 move_uploaded_file($path_foto, "../assets/img/soal/" . $fotoSoal);
-                $this->db->query("INSERT INTO qz_soal VALUES(NULL,'$isiSoal','$kunci_jwb','$fotoSoal','$nilaiSoal','$status','$waktu') ");
+                $this->db->query("INSERT INTO qz_soal VALUES(NULL,'$isiSoal','$uraian1','$uraian2','$uraian3','$uraian4','$kunci_jwb','$fotoSoal','$nilaiSoal','$status','$waktu') ");
             } else {
                 echo "<script>('Ekstensi Gambar Tidak Valid')</script>";
             }
         } else {
-            $this->db->query("INSERT INTO qz_soal VALUES(NULL,'$isiSoal','$kunci_jwb',NULL,'$nilaiSoal','$status','$waktu') ");
-        }
-
-        foreach ($jawaban as $index => $value) {
-            $this->db->query("INSERT INTO qz_jawaban VALUES(NULL,'$indexSoal','$value','$index')");
+            $this->db->query("INSERT INTO qz_soal VALUES(NULL,'$isiSoal','$uraian1','$uraian2','$uraian3','$uraian4','$kunci_jwb',NULL,'$nilaiSoal','$status','$waktu') ");
         }
 
         return true;
@@ -133,10 +120,6 @@ class fungsi extends Config
         $nilaiSoal      = trim(htmlspecialchars($_POST['nilaiSoal']));
         $status         = trim(htmlspecialchars($_POST['status']));
         ($status == "nol") ? $status = 0 : $status = 1;
-        $abjad1       = trim(htmlspecialchars($_POST['abjad_a']));
-        $abjad2       = trim(htmlspecialchars($_POST['abjad_b']));
-        $abjad3       = trim(htmlspecialchars($_POST['abjad_c']));
-        $abjad4       = trim(htmlspecialchars($_POST['abjad_d']));
 
 
         if (!empty($_FILES['fotoSoal']['name'])) {
@@ -152,28 +135,12 @@ class fungsi extends Config
                 if ($foto_lama !== "noimage.jpg") {
                     unlink("../assets/img/soal/" . $foto_lama);
                 }
-                $this->db->query("UPDATE qz_soal SET isiSoal = '$isiSoal', kunci_jwb = '$kunci_jwb' , fotoSoal = '$fotoSoal' , nilaiSoal = '$nilaiSoal' , statusSoal = '$status' , created_at = '$waktu' WHERE idSoal = '$id'");
+                $this->db->query("UPDATE qz_soal SET opsi_a = '$uraian1' , opsi_b = '$uraian2' , opsi_c = '$uraian3' , opsi_d = '$uraian4',isiSoal = '$isiSoal', kunci_jwb = '$kunci_jwb' , fotoSoal = '$fotoSoal' , nilaiSoal = '$nilaiSoal' , statusSoal = '$status' , created_at = '$waktu' WHERE idSoal = '$id'");
             } else {
                 echo "<script>('Ekstensi Gambar Tidak Valid')</script>";
             }
         } else {
-            $this->db->query("UPDATE qz_soal SET isiSoal = '$isiSoal', kunci_jwb = '$kunci_jwb' , nilaiSoal = '$nilaiSoal' , statusSoal = '$status' , created_at = '$waktu' WHERE idSoal = '$id'");
-        }
-
-        $jwb_lama = $this->db->query("SELECT * FROM qz_jawaban WHERE idSoal = '$id'");
-
-        $index_jwb = array();
-
-        foreach ($jwb_lama as $index => $value) {
-            $index_jwb[$index] = $value['idJawaban'];
-        }
-        $jawaban = array($abjad1 => $uraian1, $abjad2 => $uraian2, $abjad3 => $uraian3, $abjad4 => $uraian4);
-
-        $patok = 0;
-        foreach ($jawaban as $index => $value) {
-            $idJawaban = $index_jwb[$patok];
-            $this->db->query("UPDATE qz_jawaban SET idSoal = '$id', uraian = '$value' , abjad = '$index' WHERE idJawaban = '$idJawaban'");
-            $patok++;
+            $this->db->query("UPDATE qz_soal SET opsi_a = '$uraian1' , opsi_b = '$uraian2' , opsi_c = '$uraian3' , opsi_d = '$uraian4', isiSoal = '$isiSoal', kunci_jwb = '$kunci_jwb' , nilaiSoal = '$nilaiSoal' , statusSoal = '$status' , created_at = '$waktu' WHERE idSoal = '$id'");
         }
 
         return true;

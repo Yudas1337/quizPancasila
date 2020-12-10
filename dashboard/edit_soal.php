@@ -10,11 +10,6 @@ if (isset($_GET['idSoal'])) {
         echo "<script>document.location='index.php'</script>";
         exit;
     }
-    $query2 = "SELECT * FROM qz_jawaban WHERE idSoal = '$idSoal'";
-    $jawaban_a = $init->tampil($query2)[0];
-    $jawaban_b = $init->tampil($query2)[1];
-    $jawaban_c = $init->tampil($query2)[2];
-    $jawaban_d = $init->tampil($query2)[3];
 } else {
     echo "<script>alert('parameter tidak valid')</script>";
     echo "<script>document.location='index.php'</script>";
@@ -54,8 +49,7 @@ if (isset($_GET['idSoal'])) {
                             <td>Jawaban A</td>
                             <td>
                                 <div class="form-group">
-                                    <textarea type="text" name="uraian_a" autocomplete="off" class="form-control"><?= $data = (isset($_POST['submit'])) ? $_POST['uraian_a'] : $jawaban_a['uraian'] ?></textarea>
-                                    <input hidden type="text" name="abjad_a" class="form-control" value="A">
+                                    <textarea type="text" name="uraian_a" autocomplete="off" class="form-control"><?= $data = (isset($_POST['submit'])) ? $_POST['uraian_a'] : $cek['opsi_a'] ?></textarea>
                                 </div>
                             </td>
                         </tr>
@@ -63,8 +57,7 @@ if (isset($_GET['idSoal'])) {
                             <td>Jawaban B</td>
                             <td>
                                 <div class="form-group">
-                                    <textarea type="text" name="uraian_b" autocomplete="off" class="form-control"><?= $data = (isset($_POST['submit'])) ? $_POST['uraian_b'] : $jawaban_b['uraian'] ?></textarea>
-                                    <input hidden type="text" name="abjad_b" class="form-control" value="B">
+                                    <textarea type="text" name="uraian_b" autocomplete="off" class="form-control"><?= $data = (isset($_POST['submit'])) ? $_POST['uraian_b'] : $cek['opsi_b'] ?></textarea>
                                 </div>
                             </td>
                         </tr>
@@ -72,8 +65,7 @@ if (isset($_GET['idSoal'])) {
                             <td>Jawaban C</td>
                             <td>
                                 <div class="form-group">
-                                    <textarea type="text" name="uraian_c" autocomplete="off" class="form-control"><?= $data = (isset($_POST['submit'])) ? $_POST['uraian_c'] : $jawaban_c['uraian'] ?></textarea>
-                                    <input hidden type="text" name="abjad_c" class="form-control" value="C">
+                                    <textarea type="text" name="uraian_c" autocomplete="off" class="form-control"><?= $data = (isset($_POST['submit'])) ? $_POST['uraian_c'] : $cek['opsi_c'] ?></textarea>
                                 </div>
                             </td>
                         </tr>
@@ -81,8 +73,7 @@ if (isset($_GET['idSoal'])) {
                             <td>Jawaban D</td>
                             <td>
                                 <div class="form-group">
-                                    <textarea type="text" name="uraian_d" autocomplete="off" class="form-control"><?= $data = (isset($_POST['submit'])) ? $_POST['uraian_d'] : $jawaban_d['uraian'] ?></textarea>
-                                    <input hidden type="text" name="abjad_d" class="form-control" value="D">
+                                    <textarea type="text" name="uraian_d" autocomplete="off" class="form-control"><?= $data = (isset($_POST['submit'])) ? $_POST['uraian_d'] : $cek['opsi_d'] ?></textarea>
                                 </div>
                             </td>
                         </tr>

@@ -46,7 +46,6 @@ $index++;
                             <td>
                                 <div class="form-group">
                                     <textarea type="text" name="uraian_a" autocomplete="off" class="form-control"><?= $data = (isset($_POST['submit'])) ? $_POST['uraian_a'] : '' ?></textarea>
-                                    <input hidden type="text" name="abjad_a" class="form-control" value="A">
                                 </div>
                             </td>
                         </tr>
@@ -55,7 +54,6 @@ $index++;
                             <td>
                                 <div class="form-group">
                                     <textarea type="text" name="uraian_b" autocomplete="off" class="form-control"><?= $data = (isset($_POST['submit'])) ? $_POST['uraian_b'] : '' ?></textarea>
-                                    <input hidden type="text" name="abjad_b" class="form-control" value="B">
                                 </div>
                             </td>
                         </tr>
@@ -64,7 +62,6 @@ $index++;
                             <td>
                                 <div class="form-group">
                                     <textarea type="text" name="uraian_c" autocomplete="off" class="form-control"><?= $data = (isset($_POST['submit'])) ? $_POST['uraian_c'] : '' ?></textarea>
-                                    <input hidden type="text" name="abjad_c" class="form-control" value="C">
                                 </div>
                             </td>
                         </tr>
@@ -73,7 +70,6 @@ $index++;
                             <td>
                                 <div class="form-group">
                                     <textarea type="text" name="uraian_d" autocomplete="off" class="form-control"><?= $data = (isset($_POST['submit'])) ? $_POST['uraian_d'] : '' ?></textarea>
-                                    <input hidden type="text" name="abjad_d" class="form-control" value="D">
                                 </div>
                             </td>
                         </tr>
